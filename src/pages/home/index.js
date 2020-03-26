@@ -11,7 +11,7 @@ import {
 import styles from './styles';
 import { MovieIcon } from '../../components/ui/icons';
 
-export default function Home() {
+export default function Home({ history }) {
   const [searchText, setSearchText] = useState('');
   const classes = styles();
 
@@ -19,8 +19,12 @@ export default function Home() {
     setSearchText(event.target.value);
   };
 
-  const handleCleanSearchTextClick = event => {};
-  const handleSearchTextClick = event => {};
+  const handleCleanSearchTextClick = event => {
+    setSearchText('');
+  };
+  const handleSearchTextClick = event => {
+    history.push(`/results?movieName=${searchText}`);
+  };
 
   return (
     <Container className={classes.container}>
